@@ -58,14 +58,18 @@
       </ul>
 
       <div class="absolute bottom-0 right-5 max-w-4xl text-right uppercase p-10 text-[#f1e5a2]">
-        <p class="uppercase text-light leading-8">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam pariatur voluptate dolorem quaerat quisquam veritatis 
-          amet molestias ullam totam quae.
-        </p>
+        <motion :preset="VueUseMotions.SlideVisibleOnceTop" :duration="800">
+          <p class="uppercase text-light leading-8">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam pariatur voluptate dolorem quaerat quisquam veritatis 
+            amet molestias ullam totam quae.
+          </p>
+        </motion>
 
-        <h1 class="font-bold text-9xl">
-          Lucie Povaland
-        </h1>
+        <motion :preset="VueUseMotions.SlideVisibleOnceTop" :duration="400">
+          <h1 class="font-bold text-9xl">
+            Lucie Povaland
+          </h1>
+        </motion>
       </div>
     </div>
 
@@ -76,9 +80,11 @@
     <div id="unibody" class="px-10 py-20 bg-[#561417] space-y-30">
       <!-- Sub 1 -->
       <div class="grid grid-cols-2 gap-10">
-        <div class="rounded-xl h-auto overflow-hidden">
-          <nuxt-img src="back/infl1.jpg" class="aspect-square w-full object-cover" />
-        </div>
+        <motion :preset="VueUseMotions.FadeVisibleOnce" :duration="700">
+          <div class="rounded-xl h-auto overflow-hidden">
+            <nuxt-img src="back/infl1.jpg" class="aspect-square w-full object-cover" />
+          </div>
+        </motion>
 
         <div class="space-y-5">
           <h2 class="font-bold text-7xl uppercase text-[#f1e5a2]">
@@ -88,11 +94,12 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sint quidem autem laudantium itaque asperiores harum natus minus ab voluptas nulla aut animi eligendi corporis in, doloremque iste rem numquam.
           </p>
 
-          <div class="mt-20 space-y-10">
+          <div ref="percentageEl" class="mt-20 space-y-10">
             <div v-for="i in 3" :key="i" class="space-y-5 text-[#f1e5a2]">
               <div class="flex items-center justify-between">
                 <p class="uppercase font-semibold">Some skill</p>
-                <p class="uppercase font-semibold">56%</p>
+                <!-- <p class="uppercase font-semibold">56%</p> -->
+                <p class="uppercase font-semibold">{{ animatedCount.toFixed(0) }}%</p>
               </div>
               <div class="flex gap-1">
                 <div v-for="i in 38" :key="i" class="w-2 h-5 bg-[#f1e5a2]" />
@@ -106,7 +113,11 @@
       <!-- Sub 2 -->
       <div class="uppercase text-[#f1e5a2]">
         <div class="text-center max-w-3xl mx-auto space-y-5">
-          <h2 class="font-bold text-7xl">My creative design process</h2>
+          <motion :preset="VueUseMotions.SlideVisibleOnceTop" :duration="600">
+            <h2 class="font-bold text-7xl">
+              My creative design process
+            </h2>
+          </motion>
           <p class="font-light leading-8">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, quia facilis repellat autem, at laudantium id quasi ex deleniti accusamus sequi quas cum iste minima aut provident. Officiis, eum nostrum.
           </p>
@@ -225,9 +236,12 @@
       <!-- Sub 4 -->
       <div class="grid grid-cols-12 gap-5 text-[#f1e5a2] w-full">
         <div class="col-span-5">
-          <h2 class="font-bold text-7xl uppercase">
-            Skills & capabilities
-          </h2>
+          <motion :preset="VueUseMotions.SlideVisibleOnceLeft" :duration="600">
+            <h2 class="font-bold text-7xl uppercase">
+              Skills & capabilities
+            </h2>
+ 
+          </motion>
 
           <u-button label="View all services" size="xl" class="rounded-full my-10">
             <template #trailing>
@@ -261,7 +275,7 @@
               </h4>
 
               <div class="flex gap-1">
-                <div v-for="i in 3" :key="i" class="bg-© w-2 h-2" />
+                <div v-for="i in 3" :key="i" class="bg-[#f1e5a2] w-2 h-2" />
                 <div v-for="i in 2" :key="i" class="bg-[#f1e5a2]/50 w-2 h-2" />
               </div>
             </div>
@@ -288,9 +302,11 @@
       <!-- Sub 5 -->
       <div class="grid gap-20 grid-cols-2">
         <div>
-          <h2 class="font-bold text-7xl uppercase text-[#f1e5a2]">
-            Let's create something
-          </h2>
+          <motion :preset="VueUseMotions.SlideVisibleOnceLeft" :duration="600">
+            <h2 class="font-bold text-7xl uppercase text-[#f1e5a2]">
+              Let's create something
+            </h2>
+          </motion>
 
           <p class="text-[#f1e5a2] leading-8 uppercase font-light mt-5">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, tempora fuga repellendus 
@@ -317,9 +333,11 @@
     <!-- Footer -->
     <footer class="p-10 bg-transparent uppercase">
       <div class="p-10 text-[#f1e5a2] bg-[#561417]">
-        <h2 class="text-7xl font-bold max-w-3xl mx-auto text-center">
-          Let's bring ideas to life
-        </h2>
+        <motion :preset="VueUseMotions.SlideVisibleOnceTop" :duration="600">
+          <h2 class="text-7xl font-bold max-w-3xl mx-auto text-center">
+            Let's bring ideas to life
+          </h2>
+        </motion>
 
         <div class="flex justify-center mt-10">
           <u-button size="xl" class="rounded-full">
@@ -357,9 +375,39 @@
 </template>
 
 <script lang="ts" setup>
+import { TransitionPresets } from '@vueuse/core'
+
 // https://dribbble.com/shots/27787281-Personal-Portfolio-Website-Design
 
 onMounted(() => {
   document.body.style.background = "#f1e5a2"
+})
+
+const count = ref(0)
+const animatedCount = ref(0)
+
+if (import.meta.client) {
+  const _animatedCount = useTransition(count, {
+    duration: 1500,
+    transition: TransitionPresets.easeOutExpo,
+  })
+  syncRef(_animatedCount, animatedCount, { direction: 'ltr' })
+}
+
+const percentageRef = useTemplateRef('percentageEl')
+const { isVisible } = useElementVisibility(percentageRef, {
+  controls: true
+})
+
+watchEffect(() => {
+  if (isVisible.value) {
+    count.value = 56
+  } else {
+    count.value = 0
+  }
+})
+
+onMounted(() => {
+  // count.value = 56
 })
 </script>
